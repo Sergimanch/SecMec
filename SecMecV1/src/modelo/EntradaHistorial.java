@@ -22,12 +22,6 @@ public abstract class EntradaHistorial {
         return causa;
     }
 
-    public String getTipo(){
-        return tipo;
-    }
-
-
-
-
+    public abstract String getTipo();
     }
 }
