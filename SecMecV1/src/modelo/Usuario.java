@@ -5,7 +5,8 @@ public class Usuario extends Persona{
     protected String passwordHash;
     protected String salt;
 
-    public Usuario(String nombre, String dni, String email, String dni, String username, String passwordHash, String salt){
+    public Usuario(String nombre, String dni, String email, String direccion, String username, String passwordHash, String salt){
+        super(nombre, dni, email, direccion)
         this.username = username;
         this.passwordHash = passwordHash;
         this.salt = salt;
