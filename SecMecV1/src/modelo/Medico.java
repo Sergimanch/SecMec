@@ -12,8 +12,8 @@ public class Medico extends PersonalSanitario{
         PSIQUIATRIA
     }
     private Especialidad especialidad;
-    public Medico(String nombre, String dni, String email, String dni, String username, String passwordHash, String salt, String numeroColegiado, Especialidad especialidad){
-        super(nombre, dni, email, direccion, username, passwordHash, salt, numeroColegiado)
+    public Medico(String nombre, String dni, String email, String direccion, String username, String passwordHash, String salt, String numeroColegiado, Especialidad especialidad){
+        super(nombre, dni, email, direccion, username, passwordHash, salt, numeroColegiado);
         this.especialidad = especialidad;
     }
 
@@ -23,5 +23,18 @@ public class Medico extends PersonalSanitario{
 
     public void setEspecialidad(modelo.Medico.Especialidad especialidad) {
         this.especialidad = especialidad;
+    }
+    public String toString(){
+        return "Medico{" +
+                "especialidad=" + especialidad +
+                ", numeroColegiado='" + numeroColegiado + '\'' +
+                ", username='" + username + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", salt='" + salt + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
     }
 }

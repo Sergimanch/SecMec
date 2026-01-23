@@ -1,5 +1,5 @@
 package modelo;
-import java.LocalDate;
+import java.time.LocalDate;
 public abstract class EntradaHistorial {
     protected LocalDate fecha;
     protected String idMedico;
@@ -9,6 +9,7 @@ public abstract class EntradaHistorial {
         this.fecha = fecha;
         this.idMedico = idMedico;
         this.causa = causa;
+    }
 
     public LocalDate getFecha() {
         return fecha;
@@ -22,6 +23,7 @@ public abstract class EntradaHistorial {
         return causa;
     }
 
-    public abstract String getTipo();
-    }
+    public String getTipo() {
+        return this.getClass().getSimpleName();
+    }   
 }

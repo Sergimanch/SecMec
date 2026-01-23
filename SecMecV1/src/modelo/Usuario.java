@@ -6,7 +6,7 @@ public class Usuario extends Persona{
     protected String salt;
 
     public Usuario(String nombre, String dni, String email, String direccion, String username, String passwordHash, String salt){
-        super(nombre, dni, email, direccion)
+        super(nombre, dni, email, direccion);
         this.username = username;
         this.passwordHash = passwordHash;
         this.salt = salt;
@@ -33,6 +33,17 @@ public class Usuario extends Persona{
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+    public String toString(){
+        return "Usuario{" +
+                "username='" + username + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", salt='" + salt + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
     }
 
 
