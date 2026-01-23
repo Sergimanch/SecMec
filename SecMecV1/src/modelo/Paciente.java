@@ -4,10 +4,9 @@ public class Paciente extends Persona{
     private HistorialMedico historialMedico;
     private Medico medicoAsignado;
     
-    public Paciente(String nombre, String dni, String email, String direccion, HistorialMedico historialMedico, Medico medicoAsignado){
+    public Paciente(String nombre, String dni, String email, String direccion){
         super(nombre, dni, email, direccion);
-        this.historialMedico = historialMedico;
-        this.medicoAsignado = medicoAsignado;
+        this.historialMedico =  new HistorialMedico();
     }
     public HistorialMedico getHistorialMedico() {
         return historialMedico;
@@ -23,12 +22,12 @@ public class Paciente extends Persona{
     }
     public String toString(){
         return "Paciente{" +
-                "historialMedico=" + historialMedico +
-                ", medicoAsignado=" + medicoAsignado +
-                ", nombre='" + nombre + '\'' +
+                "Nombre='" + nombre + '\'' +
                 ", dni='" + dni + '\'' +
                 ", email='" + email + '\'' +
                 ", direccion='" + direccion + '\'' +
+                ", historialMedico=" + historialMedico.toString() +
+                ", medicoAsignado=" + medicoAsignado +
                 '}';
     }
 }

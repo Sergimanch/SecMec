@@ -2,45 +2,33 @@ package controlador;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-
+import vista.Vista;
 import modelo.*;
+import modelo.PruebaMedica.TipoPrueba;
 
 public class Controlador {
-        Admin testAdmin1 = new Admin("myAdmin","123456789A","myadmin.@hospital.com","c/Almíbar 12", "user.myAdmin","passadmin","sal","idAdmin_001");
-        Medico testMedico1 = new Medico("Doctor Carrero","123456789B","doctores.carrero@hospital.com","c/Almíbar 13", "user.docCarre","passdoc","sal","nCol_001", Especialidad.OTORRINOLARINGOLOGIA);
-        // Imprimir Admin y Médico
-        miVista.imprimir("\n--- Usuarios creados ---");
-        miVista.imprimir(testAdmin1.toString());
-        miVista.imprimir(testMedico1.toString());
+    public void iniciar(){
+        Vista V = new Vista();
+        Admin testAdmin = new Admin("Pepe","4455667788T","gestor@clinica.es","Avenida Paz 33", "usr.gestorClin","pwdGestor999","hashGestor","idAdmin_01");
+        Medico testMedico = new Medico("Dra. Gómez","876543210N","gomez.med@centro.es","Plaza Mayor 21", "user.draGomez","passMed789","saltMed","nCol_888", Medico.Especialidad.CARDIOLOGIA);
 
-        // Crear Paciente
-        Paciente testPaciente1 = new Paciente("Misael","123456789C","misael.correo@gmail.com","c/Almíbar 14");
-        // Imprimir Paciente
-        miVista.imprimir("\n--- Paciente creado ---");
-        miVista.imprimir(testPaciente1.toString());
+        V.imprimir("\n--- Usuarios creados ---");
+        V.imprimir(testAdmin.toString());
+        V.imprimir(testMedico.toString());
+        Paciente testPaciente = new Paciente("Lucía","987654321X","lucia.mail@example.com","Av. Sol 103");
+        V.imprimir("\n--- Paciente creado ---");
+        V.imprimir(testPaciente.toString());
+        testAdmin.asignarMedicoAPaciente(testPaciente,testMedico);
+        PruebaMedica testPruebaMedica = new PruebaMedica(LocalDate.now(),testMedico.getNumeroColegiado(),"Presión arterial alta", TipoPrueba.ECOGRAFIA,"Hipertensión");
+        Receta testReceta = new Receta(LocalDate.now(),testMedico.getNumeroColegiado(),"Presión arterial alta", Arrays.asList("Enalapril 20mg", "Amlodipino 5mg"));
+        testPaciente.getHistorialMedico().getEntradas().add(testReceta);
+        testAdmin.agregarPruebaMedicaAHistorial(testPaciente, testPruebaMedica);
+        V.imprimir("\n--- Realizando prueba médica ---");
+        V.imprimir(testPruebaMedica.toString());
+        V.imprimir("\n--- Se ha recetado  ---");
+        V.imprimir(testReceta.toString());
 
-        // Asigno la relación médico paciente con el usuario Administrador
-        testAdmin1.asignarMedico(testPaciente1,testMedico1);
-
-        // Creo historial de Paciente
-        PruebaMedica testPruebaMedica1 = new PruebaMedica(LocalDate.now(),testMedico1.getNumeroColegiado(),"Dolor en los oídos", TipoPrueba.PRUEBA_ESFUERZO,"Oídos inflamados");
-        Receta testReceta1 = new Receta(LocalDate.now(),testMedico1.getNumeroColegiado(),"Dolor en los oídos", Arrays.asList("Líquido para oídos", "Paracetamol 1g"));
-        // AQUÍ ASIGNO RECETA
-        testPaciente1.getHistorial().agregarEntrada(testReceta1);
-
-        // Admin asigna pruebas médicas
-        // AQUÍ ASIGNO PRUEBA MÉDICA
-        testAdmin1.asignarPrueba(testPaciente1,testPruebaMedica1);
-        miVista.imprimir("\nAdministrativo ha asignado prueba médica...");
-        // Imprimo historial de Paciente
-        miVista.imprimir("\nMédico realiza pruebas...");
-        miVista.imprimir(testPruebaMedica1.toString());
-        miVista.imprimir("\nMédico receta en base al resultado de las pruebas...");
-        miVista.imprimir(testReceta1.toString());
-
-        miVista.imprimir("");
-        miVista.imprimir("");
-        miVista.imprimir("");
-
+        V.imprimir("");
+        V.imprimir("");
     }
-}    
+}

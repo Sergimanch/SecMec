@@ -1,7 +1,7 @@
 package modelo;
 
 public class Medico extends PersonalSanitario{
-    enum Especialidad {
+    public enum Especialidad {
         CARDIOLOGIA,
         CIRUGIA_GENERAL,
         PEDIATRIA,
