@@ -6,29 +6,38 @@ import vista.Vista;
 import modelo.*;
 import modelo.PruebaMedica.TipoPrueba;
 
+/**
+ * Controlador principal que coordina la simulación de usuarios y acciones.
+ *
+ * @author Sergio
+ */
 public class Controlador {
+    /**
+     * Inicializa la simulación/ejecución de prueba creando usuarios, pruebas y recetas de ejemplo.
+     */
     public void iniciar(){
         Vista V = new Vista();
         Admin testAdmin = new Admin("Pepe","4455667788T","gestor@clinica.es","Avenida Paz 33", "usr.gestorClin","pwdGestor999","hashGestor","idAdmin_01");
         Medico testMedico = new Medico("Dra. Gómez","876543210N","gomez.med@centro.es","Plaza Mayor 21", "user.draGomez","passMed789","saltMed","nCol_888", Medico.Especialidad.CARDIOLOGIA);
-
         V.imprimir("\n--- Usuarios creados ---");
         V.imprimir(testAdmin.toString());
         V.imprimir(testMedico.toString());
-        Paciente testPaciente = new Paciente("Lucía","987654321X","lucia.mail@example.com","Av. Sol 103");
+        HistorialMedico historialInicial = new HistorialMedico(new java.util.ArrayList<>(), LocalDate.now(), 0);
+        Paciente testPaciente = new Paciente("Lucía","987654321X","lucia.mail@example.com","Av. Sol 103", historialInicial, testMedico);
         V.imprimir("\n--- Paciente creado ---");
         V.imprimir(testPaciente.toString());
         testAdmin.asignarMedicoAPaciente(testPaciente,testMedico);
-        PruebaMedica testPruebaMedica = new PruebaMedica(LocalDate.now(),testMedico.getNumeroColegiado(),"Presión arterial alta", TipoPrueba.ECOGRAFIA,"Hipertensión");
-        Receta testReceta = new Receta(LocalDate.now(),testMedico.getNumeroColegiado(),"Presión arterial alta", Arrays.asList("Enalapril 20mg", "Amlodipino 5mg"));
+        PruebaMedica testPruebaMedica = new PruebaMedica(LocalDate.now(),testMedico.getNumeroColegiado(),"Presión arterial alta", TipoPrueba.ECOGRAFIA,"Hipertensión",  PruebaMedica.Gravedad.GRAVE, 200);
+        Receta testReceta = new Receta(LocalDate.now(),testMedico.getNumeroColegiado(),"Presión arterial alta", Arrays.asList("Enalapril 20mg", "Amlodipino 5mg"), Receta.Gravedad.GRAVE, 70);
         testPaciente.getHistorialMedico().getEntradas().add(testReceta);
         testAdmin.agregarPruebaMedicaAHistorial(testPaciente, testPruebaMedica);
         V.imprimir("\n--- Realizando prueba médica ---");
         V.imprimir(testPruebaMedica.toString());
-        V.imprimir("\n--- Se ha recetado  ---");
+        V.imprimir("\n--- Se ha recetado ---");
         V.imprimir(testReceta.toString());
+        V.imprimir("");
+        V.imprimir("");
 
-        V.imprimir("");
-        V.imprimir("");
+            
     }
 }

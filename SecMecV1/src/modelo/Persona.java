@@ -1,10 +1,23 @@
 package modelo;
 
+/**
+ * Clase base que representa a una persona con datos personales básicos.
+ *
+ * @author Sergio
+ */
 public abstract class Persona {
     protected String nombre;
     protected String dni;
     protected String email;
     protected String direccion;
+    /**
+     * Crea una nueva Persona.
+     *
+     * @param nombre   Nombre de la persona.
+     * @param dni      Documento nacional de identidad.
+     * @param email    Correo electrónico.
+     * @param direccion Dirección postal.
+     */
     public Persona (String nombre, String dni, String email, String direccion) {
         this.nombre = nombre;
         this.dni = dni;
@@ -45,12 +58,16 @@ public abstract class Persona {
     }
 
     @java.lang.Override
+    /**
+     * Representación en cadena de la persona.
+     * @return String con los datos de la persona
+     */
     public java.lang.String toString() {
-        return "Persona{" +
-                "nombre='" + nombre + '\'' +
-                ", dni='" + dni + '\'' +
-                ", email='" + email + '\'' +
-                ", direccion='" + direccion + '\'' +
-                '}';
+        return "Persona:" +
+                "\nNombre='" + nombre + '\'' +
+                "\nDNI='" + dni + '\'' +
+                "\nEmail='" + email + '\'' +
+                "\nDireccion='" + direccion
+               ;
     }
 }

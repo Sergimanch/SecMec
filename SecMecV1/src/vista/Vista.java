@@ -2,6 +2,8 @@ package vista;
 
 /**
  * Clase encargada de salida de información por consola.
+ *
+ * @author Sergio
  */
 public class Vista {
     /**
